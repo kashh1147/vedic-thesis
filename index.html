@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Vedic Sanskrit Research Centre &amp; Institute — Kashyap Joshi</title>
+  <meta name="description" content="A B.Arch thesis exploring the fusion of Vastu Purusha mandala and contemporary institutional design. A 49,000 sqm research campus in Ahmedabad by Kashyap Joshi, 2023." />
+  <meta name="author" content="Kashyap Joshi" />
+
+  <meta property="og:title" content="Vedic Sanskrit Research Centre — B.Arch Thesis" />
+  <meta property="og:description" content="A 49,000 sqm research campus designed around the Vastu Purusha mandala." />
+  <meta property="og:image" content="assets/images/render-plaza-axis.jpg" />
+  <meta property="og:type" content="article" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       Vedic Sanskrit Research Centre — Thesis Case Study
+       Final build · Kashyap Joshi · 2026
+       ============================================================ */
+
+    :root {
+      --bg: #faf7f1;
+      --surface: #ffffff;
+      --surface-alt: #efe9dc;
+      --ink: #1a1612;
+      --ink-soft: #4a4540;
+      --ink-muted: #8a8378;
+      --line: #ddd5c2;
+      --accent: #8b3a1f;
+      --accent-soft: #c97a5a;
+
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+      --max: 1568px;
+      --max-narrow: 760px;
+      --pad: clamp(1.25rem, 4vw, 3rem);
+      --section-pad: clamp(4rem, 10vw, 8rem);
+
+      --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--ink);
+      background: var(--bg);
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; transition: color 0.3s var(--ease); }
+
+    h1, h2, h3 {
+      font-family: var(--serif);
+      font-weight: 400;
+      line-height: 1.12;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+    h1 { font-size: clamp(2.5rem, 7vw, 5.5rem); font-weight: 300; }
+    h2 { font-size: clamp(2rem, 4vw, 3.25rem); }
+    h3 { font-size: 1.5rem; font-weight: 500; }
+    em { color: var(--accent); font-style: italic; }
+
+    .eyebrow {
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+    }
+
+    /* ============================================================
+       NAV — sticky, minimal
+       ============================================================ */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(250, 247, 241, 0.85);
+      backdrop-filter: blur(14px) saturate(140%);
+      -webkit-backdrop-filter: blur(14px) saturate(140%);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s var(--ease), padding 0.3s var(--ease);
+    }
+    .nav.scrolled { border-bottom-color: var(--line); }
+    .nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 1.1rem var(--pad);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .nav-back, .nav-cta {
+      font-size: 0.8125rem;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      transition: color 0.3s var(--ease);
+    }
+    .nav-back { color: var(--ink-soft); }
+    .nav-back:hover { color: var(--accent); }
+    .nav-title {
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: var(--ink);
+    }
+    .nav-cta {
+      color: var(--ink);
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 2px;
+    }
+    .nav-cta:hover { color: var(--accent); border-color: var(--accent); }
+    @media (max-width: 640px) { .nav-title { display: none; } }
+
+    /* ============================================================
+       HERO — full-bleed, parallax-style fade
+       ============================================================ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 9rem var(--pad) 4.5rem;
+      overflow: hidden;
+    }
+    .hero-image {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      overflow: hidden;
+    }
+    .hero-image img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      animation: heroZoom 18s ease-out forwards;
+    }
+    @keyframes heroZoom {
+      from { transform: scale(1.08); }
+      to   { transform: scale(1); }
+    }
+    .hero-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(26,22,18,0.15) 0%, rgba(26,22,18,0.55) 60%, rgba(26,22,18,0.85) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: var(--max);
+      width: 100%;
+      margin: 0 auto;
+      color: #fff;
+    }
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 1.75rem;
+      opacity: 0;
+      animation: fadeUp 1s 0.2s var(--ease) forwards;
+    }
+    .hero h1 {
+      color: #fff;
+      max-width: 16ch;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 1.1s 0.45s var(--ease) forwards;
+    }
+    .hero h1 em { color: var(--accent-soft); }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem 3rem;
+      padding-top: 2.25rem;
+      border-top: 1px solid rgba(255,255,255,0.22);
+      max-width: 760px;
+      opacity: 0;
+      animation: fadeUp 1.1s 0.7s var(--ease) forwards;
+    }
+    .hero-meta-item .label {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 0.4rem;
+    }
+    .hero-meta-item .value {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      color: #fff;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      right: var(--pad);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      writing-mode: vertical-rl;
+      opacity: 0;
+      animation: fadeIn 1s 1.2s ease forwards, scrollHint 2.5s 1.5s ease-in-out infinite;
+    }
+    @keyframes scrollHint {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(8px); }
+    }
+    @media (max-width: 720px) { .hero-scroll { display: none; } }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; } to { opacity: 1; }
+    }
+
+    /* ============================================================
+       SECTIONS
+       ============================================================ */
+    .section { padding: var(--section-pad) var(--pad); }
+    .section-narrow { max-width: var(--max-narrow); margin: 0 auto; }
+    .section-wide { max-width: var(--max); margin: 0 auto; }
+    .section-alt { background: var(--surface-alt); }
+    .section-dark { background: var(--ink); color: var(--bg); }
+    .section-dark h2, .section-dark h3 { color: var(--bg); }
+    .section-dark .eyebrow { color: var(--accent-soft); }
+    .section-dark p { color: rgba(250,247,241,0.78); }
+
+    .section-head { margin-bottom: 3rem; }
+    .section-head h2 { margin-bottom: 1rem; }
+
+    .lead {
+      font-family: var(--serif);
+      font-size: clamp(1.3rem, 2vw, 1.625rem);
+      line-height: 1.55;
+      color: var(--ink-soft);
+      margin-bottom: 2rem;
+      font-weight: 400;
+    }
+    p {
+      font-size: 1.0625rem;
+      line-height: 1.8;
+      color: var(--ink-soft);
+      margin-bottom: 1.25rem;
+    }
+    p:last-child { margin-bottom: 0; }
+
+    .pull-quote {
+      border-left: 3px solid var(--accent);
+      padding: 0.5rem 0 0.5rem 2rem;
+      margin: 3rem 0;
+      font-family: var(--serif);
+      font-size: clamp(1.5rem, 2.4vw, 1.875rem);
+      line-height: 1.4;
+      color: var(--ink);
+      font-style: italic;
+    }
+
+    /* ============================================================
+       FIVE ELEMENTS GRID
+       ============================================================ */
+    .elements-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+    .element-card {
+      text-align: center;
+      padding: 2rem 0.75rem 1.5rem;
+      border: 1px solid var(--line);
+      background: var(--bg);
+      transition: transform 0.4s var(--ease), border-color 0.3s var(--ease), background 0.3s var(--ease);
+    }
+    .element-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+      background: var(--surface);
+    }
+    .element-symbol {
+      font-family: var(--serif);
+      font-size: 2rem;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      line-height: 1;
+    }
+    .element-name {
+      font-size: 0.75rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+    .element-desc {
+      font-size: 0.8125rem;
+      color: var(--ink-muted);
+      line-height: 1.5;
+    }
+    @media (max-width: 720px) {
+      .elements-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ============================================================
+       DATA STATS
+       ============================================================ */
+    .data-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin: 3rem 0;
+      padding: 2.5rem 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .data-item .data-value {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3.5vw, 2.75rem);
+      color: var(--ink);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .data-item .data-value sub {
+      font-size: 0.6em;
+      vertical-align: baseline;
+      color: var(--ink-muted);
+    }
+    .data-item .data-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+    @media (max-width: 720px) {
+      .data-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    }
+
+    /* ============================================================
+       IMAGE BLOCKS — each sized to its native resolution
+       ============================================================ */
+    .image-block {
+      margin: 4rem auto;
+      max-width: 100%;
+    }
+    .image-block.full-bleed {
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 100%;
+    }
+    .image-block img {
+      width: 100%;
+      max-width: var(--img-native-w, 100%);
+      height: auto;
+      margin: 0 auto;
+      display: block;
+      background: var(--surface-alt);
+      transition: transform 1.2s var(--ease);
+      image-rendering: -webkit-optimize-contrast;
+    }
+    .image-block.zoom:hover img {
+      transform: scale(1.02);
+    }
+    .image-caption {
+      max-width: var(--max-narrow);
+      margin: 1.25rem auto 0;
+      padding: 0 var(--pad);
+      font-size: 0.8125rem;
+      color: var(--ink-muted);
+      letter-spacing: 0.02em;
+    }
+    .image-caption strong { color: var(--ink); font-weight: 500; }
+
+    .image-block.contained {
+      max-width: 100%;
+      margin: 4rem auto;
+    }
+    .image-block.contained .image-caption { padding: 0; }
+
+    /* Image pair side-by-side */
+    .image-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin: 4rem auto;
+      max-width: 100%;
+    }
+    .image-pair figure { margin: 0; }
+    .image-pair img {
+      width: 100%;
+      max-width: var(--img-native-w, 100%);
+      height: auto;
+      display: block;
+    }
+    .image-pair figcaption {
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+      letter-spacing: 0.04em;
+      padding-top: 0.75rem;
+    }
+    @media (max-width: 720px) {
+      .image-pair { grid-template-columns: 1fr; }
+    }
+
+    /* Concept image — sized to native */
+    .concept-image {
+      max-width: 100%;
+      margin: 3rem auto 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .concept-image img {
+      width: 100%;
+      max-width: var(--img-native-w, 100%);
+      height: auto;
+      margin: 0 auto;
+      display: block;
+    }
+
+    /* ============================================================
+       PROCESS — numbered steps
+       ============================================================ */
+    .process-steps {
+      counter-reset: step;
+      margin-top: 3rem;
+    }
+    .process-step {
+      display: flex;
+      gap: 2.5rem;
+      padding: 2rem 0;
+      border-top: 1px solid var(--line);
+      align-items: flex-start;
+      position: relative;
+      transition: padding 0.4s var(--ease);
+    }
+    .process-step:last-child { border-bottom: 1px solid var(--line); }
+    .process-step::before {
+      counter-increment: step;
+      content: '0' counter(step);
+      font-family: var(--serif);
+      font-size: 2.25rem;
+      color: var(--accent);
+      line-height: 1;
+      flex: 0 0 70px;
+      transition: transform 0.4s var(--ease);
+    }
+    .process-step:hover::before {
+      transform: translateX(8px);
+    }
+    .process-text { flex: 1 1 auto; min-width: 0; }
+    .process-step h3 { margin-bottom: 0.5rem; }
+    .process-step p { margin-bottom: 0; font-size: 1rem; }
+    @media (max-width: 720px) {
+      .process-step { flex-direction: column; gap: 0.5rem; }
+      .process-step::before { flex: none; }
+    }
+
+    /* ============================================================
+       GALLERY (drawings + renders)
+       ============================================================ */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin: 3rem auto 0;
+      max-width: 1568px;
+    }
+    .gallery-item {
+      background: var(--bg);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.4s var(--ease);
+    }
+    .gallery-item:hover { transform: translateY(-4px); }
+    .gallery-item .img-wrap {
+      overflow: hidden;
+      background: var(--surface-alt);
+    }
+    .gallery-item img {
+      width: 100%;
+      transition: transform 0.8s var(--ease);
+      image-rendering: -webkit-optimize-contrast;
+    }
+    .gallery-item:hover img { transform: scale(1.04); }
+    .gallery-item figcaption {
+      font-size: 0.8125rem;
+      color: var(--ink-muted);
+      padding: 1rem 0;
+      letter-spacing: 0.02em;
+      line-height: 1.6;
+    }
+    .gallery-item figcaption strong {
+      color: var(--ink);
+      font-weight: 500;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    .gallery-item.gallery-wide { grid-column: 1 / -1; }
+
+    @media (max-width: 720px) {
+      .gallery { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    .footer {
+      padding: 4rem var(--pad) 2.5rem;
+      background: var(--ink);
+      color: var(--ink-muted);
+      text-align: center;
+    }
+    .footer-name {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      color: var(--bg);
+      margin-bottom: 0.25rem;
+    }
+    .footer-tag {
+      font-size: 0.875rem;
+      margin-bottom: 1.75rem;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .footer-links a {
+      color: var(--bg);
+      text-decoration: none;
+      font-size: 0.8125rem;
+      letter-spacing: 0.04em;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 2px;
+      transition: all 0.3s var(--ease);
+    }
+    .footer-links a:hover {
+      border-color: var(--accent-soft);
+      color: var(--accent-soft);
+    }
+    .footer-copy { font-size: 0.75rem; }
+
+    /* ============================================================
+       SCROLL REVEAL ANIMATIONS
+       Approach: content is VISIBLE by default. Reveal animations
+       only apply when JS adds the .js-anim class to <html>.
+       This guarantees content shows even if JS fails or is slow.
+       ============================================================ */
+    .js-anim .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+    }
+    .js-anim .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Stagger child reveals */
+    .js-anim .reveal-stagger > * {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+    }
+    .js-anim .reveal-stagger.in-view > * {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .js-anim .reveal-stagger.in-view > *:nth-child(1) { transition-delay: 0.05s; }
+    .js-anim .reveal-stagger.in-view > *:nth-child(2) { transition-delay: 0.15s; }
+    .js-anim .reveal-stagger.in-view > *:nth-child(3) { transition-delay: 0.25s; }
+    .js-anim .reveal-stagger.in-view > *:nth-child(4) { transition-delay: 0.35s; }
+    .js-anim .reveal-stagger.in-view > *:nth-child(5) { transition-delay: 0.45s; }
+
+    /* Image entrance: subtle clip reveal — only when js-anim active */
+    .js-anim .image-reveal {
+      clip-path: inset(0 100% 0 0);
+      transition: clip-path 1.4s var(--ease);
+    }
+    .js-anim .image-reveal.in-view {
+      clip-path: inset(0 0 0 0);
+    }
+
+    /* Reduced motion support */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01s !important;
+        transition-duration: 0.01s !important;
+      }
+      .js-anim .image-reveal { clip-path: none; }
+      .hero-image img { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= NAV ================= -->
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="../" class="nav-back">← Portfolio</a>
+      <span class="nav-title">Vedic Sanskrit Research Centre</span>
+      <a href="assets/pdf/thesis-report.pdf" class="nav-cta" download>Download PDF</a>
+    </div>
+  </header>
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="hero-image">
+      <img src="assets/images/render-plaza-axis.jpg" alt="Central plaza of Vedic Sanskrit Research Centre with axial water bodies leading to the Shiva temple" />
+    </div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">B.Arch Thesis · 2023</p>
+      <h1>Vedic Sanskrit Research Centre <em>&amp; Institute</em></h1>
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <div class="label">Location</div>
+          <div class="value">Ahmedabad, Gujarat</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="label">Site Area</div>
+          <div class="value">49,000 sqm</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="label">Type</div>
+          <div class="value">Institutional</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="label">Guide</div>
+          <div class="value">Ar. Chaitali Shroff</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll">Scroll ↓</div>
+  </section>
+
+  <!-- ================= INTRODUCTION ================= -->
+  <section class="section">
+    <div class="section-narrow">
+      <p class="eyebrow reveal">Brief</p>
+      <h2 class="reveal">An institution for a language without a home.</h2>
+      <p class="lead reveal">
+        Sanskrit is the source of most modern Indian languages and a vessel
+        of thousands of years of literature, philosophy, and ritual. Yet
+        India has no purpose-built campus dedicated to its research. This
+        thesis proposes one — a 49,000 sqm campus in Ahmedabad where
+        scholars, students, and the public can engage with a living
+        tradition.
+      </p>
+      <div class="reveal">
+        <p>
+          The brief required seven distinct programs to coexist on a single
+          site: a research centre, a Vedic pathshala, an institute,
+          residential quarters, an auditorium and museum, a goshala, and a
+          temple. The challenge was not to fit them — it was to find an
+          organizing logic that gave the campus coherence without
+          flattening the differences between them.
+        </p>
+      </div>
+
+      <div class="pull-quote reveal">
+        The plan does not borrow from tradition. It is structured by it.
+      </div>
+
+      <div class="reveal">
+        <p>
+          That logic came from two sources: the <em>Vastu Purusha mandala</em> —
+          the cosmological grid that has organized Indian buildings for two
+          millennia — and the <em>gurukul</em> typology, where teacher and
+          student live and learn around a shared courtyard. Neither was
+          applied as ornament. Both shaped the geometry of the site, the
+          orientation of the buildings, and the path a visitor takes from
+          the entrance to the central temple.
+        </p>
+      </div>
+    </div>
+
+    <!-- Aerial detail render -->
+    <div class="image-block contained zoom">
+      <div class="image-reveal reveal">
+        <img style="--img-native-w:1568px" src="assets/images/render-aerial-detail.jpg" alt="Aerial detail render showing the central temple, plaza, and entrance" loading="lazy" />
+      </div>
+      <p class="image-caption reveal"><strong>Fig. 01</strong> — Detail aerial showing the central temple with its stepped pyramidal roof, axial water body, and surrounding institutional blocks.</p>
+    </div>
+  </section>
+
+  <!-- ================= CONCEPT ================= -->
+  <section class="section section-alt">
+    <div class="section-narrow">
+      <p class="eyebrow reveal">Concept</p>
+      <h2 class="reveal">Five elements, one campus.</h2>
+      <div class="reveal">
+        <p>
+          Vastu Purusha holds that every built space is animated by five
+          elemental forces — <em>pancha bhuta</em>. The campus assigns each
+          zone to one element, and each element shapes the architectural
+          character of its zone: water bodies in the public realm,
+          courtyards of earth in the residential clusters, fire in the
+          yagyashala, air through the open pathshalas, and the void of
+          space at the symbolic centre.
+        </p>
+      </div>
+
+      <div class="elements-grid reveal-stagger reveal">
+        <div class="element-card">
+          <div class="element-symbol">◯</div>
+          <div class="element-name">Earth</div>
+          <div class="element-desc">Residential clusters &amp; gurukul courts</div>
+        </div>
+        <div class="element-card">
+          <div class="element-symbol">◊</div>
+          <div class="element-name">Water</div>
+          <div class="element-desc">Axial channel &amp; reflection pools</div>
+        </div>
+        <div class="element-card">
+          <div class="element-symbol">△</div>
+          <div class="element-name">Fire</div>
+          <div class="element-desc">Yagyashala &amp; ceremonial hall</div>
+        </div>
+        <div class="element-card">
+          <div class="element-symbol">○</div>
+          <div class="element-name">Air</div>
+          <div class="element-desc">Open pathshalas &amp; verandahs</div>
+        </div>
+        <div class="element-card">
+          <div class="element-symbol">●</div>
+          <div class="element-name">Space</div>
+          <div class="element-desc">The temple &amp; central plaza</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Concept panel image -->
+    <div class="concept-image">
+      <div class="image-reveal reveal">
+        <img style="--img-native-w:1288px" src="assets/images/concept-vastu.jpg" alt="Vastu Purusha mandala diagram with site location maps and the eight directions" loading="lazy" />
+      </div>
+      <p class="image-caption reveal"><strong>Fig. 02</strong> — The Vastu Purusha mandala. The deity occupies the square; the directions and the body's chakras align to fix the orientation of every building.</p>
+    </div>
+
+    <!-- Classroom isometric — vertical -->
+    <div class="image-block contained zoom">
+      <div class="image-reveal reveal">
+        <img style="--img-native-w:980px" src="assets/images/iso-classroom.jpg" alt="Exploded isometric view of the Vedic classroom block showing roof windows and box-arch fenestration" loading="lazy" />
+      </div>
+      <p class="image-caption reveal"><strong>Fig. 03</strong> — Vedic classroom block, exploded isometric. Pitched roofs admit north light through ridge skylights; box-arch openings reference the gurukul typology.</p>
+    </div>
+  </section>
+
+  <!-- ================= SITE ================= -->
+  <section class="section">
+    <div class="section-narrow">
+      <p class="eyebrow reveal">Site</p>
+      <h2 class="reveal">Between the city, the airport, and the green belt.</h2>
+      <div class="reveal">
+        <p>
+          The site sits in north-east Ahmedabad along the Hansol road,
+          framed by a 32-metre-wide approach road on three sides and a
+          thick vegetation buffer on the fourth. AUDA classifies it as a
+          knowledge and education zone. Its scale (49,000 sqm) and the
+          fact that it is bounded by roads on three sides made
+          symmetrical, axial planning viable in a way few urban sites in
+          Ahmedabad allow.
+        </p>
+      </div>
+
+      <div class="data-grid reveal-stagger reveal">
+        <div class="data-item">
+          <div class="data-value">49,000<sub>sqm</sub></div>
+          <div class="data-label">Site Area</div>
+        </div>
+        <div class="data-item">
+          <div class="data-value">31,450<sub>sqm</sub></div>
+          <div class="data-label">Built-Up</div>
+        </div>
+        <div class="data-item">
+          <div class="data-value">7</div>
+          <div class="data-label">Programs</div>
+        </div>
+        <div class="data-item">
+          <div class="data-value">N–S</div>
+          <div class="data-label">Primary Axis</div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <p>
+          Vastu prescribes that ceremonial buildings face north. The site
+          rotates the entire grid to a north-south orientation, placing the
+          Shiva temple at the geometric and symbolic centre. Every other
+          building references the temple through axial sightlines.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PROCESS ================= -->
+  <section class="section section-alt">
+    <div class="section-narrow">
+      <p class="eyebrow reveal">Process</p>
+      <h2 class="reveal">From an empty site to a campus, in five moves.</h2>
+
+      <div class="process-steps reveal">
+        <div class="process-step">
+          <div class="process-text">
+            <h3>Establish the access</h3>
+            <p>The 49,000 sqm site is bounded by a 40-metre approach road on the north and east. The main entry sits on the central north axis; a secondary entry on the east. Both align to the campus's primary north-south spine.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="process-text">
+            <h3>Lay the Vastu grid</h3>
+            <p>The site is divided into a square grid oriented to the cardinal directions, in keeping with the Vastu Purusha mandala. The grid becomes the substrate for all subsequent placement.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="process-text">
+            <h3>Carve the volumes</h3>
+            <p>Volumes are extruded from the grid and pulled apart to create courtyards. Solid and void alternate. The result is a campus that feels porous from the ground but reads as composed from above.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="process-text">
+            <h3>Anchor the centre</h3>
+            <p>The Shiva temple is placed at the geometric centre of the site. All major buildings — research centre, pathshala, residential, auditorium — orient themselves toward it. The campus reads as a mandala from the air.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="process-text">
+            <h3>Layer the landscape</h3>
+            <p>Water bodies trace the central north-south axis, descending from the temple as a representation of the Ganga. A green belt encircles the perimeter, buffering noise from the airport and creating a microclimate two to three degrees cooler than the surrounding city.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Process evolution diagram — full bleed ultrawide -->
+    <div class="image-block full-bleed" style="margin-top: 5rem;">
+      <div class="image-reveal reveal">
+        <img style="--img-native-w:1568px" src="assets/images/process-evolution.jpg" alt="Site evolution diagram showing the five planning moves from empty plot to organized campus" loading="lazy" />
+      </div>
+      <p class="image-caption reveal"><strong>Fig. 04</strong> — Site evolution. Five moves transform the empty plot into an organized campus.</p>
+    </div>
+  </section>
+
+  <!-- ================= DRAWINGS ================= -->
+  <section class="section">
+    <div class="section-wide">
+      <div class="section-head">
+        <p class="eyebrow reveal">Drawings</p>
+        <h2 class="reveal">Plans, sections, and the geometry of the campus.</h2>
+      </div>
+    </div>
+
+    <!-- Ground floor plan — full bleed -->
+    <div class="image-block full-bleed">
+      <div class="image-reveal reveal">
+        <img style="--img-native-w:1400px" src="assets/images/plan-ground.jpg" alt="Ground floor master plan showing symmetrical campus with central temple, residential blocks, research centre, pathshala, and yagyashala" loading="lazy" />
+      </div>
+      <p class="image-caption reveal"><strong>Ground floor plan</strong> — Symmetrical campus organized around a central temple. Residential and goshala to the west; research centre, museum, and auditorium to the east; pathshala and yagyashala to the south. <strong>Scale 1:1000.</strong></p>
+    </div>
+
+    <!-- First floor plan -->
+    <div class="image-block contained">
+      <div class="image-reveal reveal">
+        <img style="--img-native-w:1400px" src="assets/images/plan-first.jpg" alt="First floor plan with central podium lifted 5m and meditation hall carved beneath" loading="lazy" />
+      </div>
+      <p class="image-caption reveal"><strong>First floor plan</strong> — Central plaza is lifted 5m above grade, with a meditation hall carved beneath. Water bodies trace the primary axis.</p>
+    </div>
+
+    <!-- Section AA' — long thin ultrawide -->
+    <div class="image-block full-bleed" style="margin-top: 5rem;">
+      <div class="image-reveal reveal">
+        <img style="--img-native-w:1568px" src="assets/images/section-aa.jpg" alt="Section AA prime — long campus section through main entry, plaza, meditation hall, Shiva temple, and yagyashala" loading="lazy" />
+      </div>
+      <p class="image-caption reveal"><strong>Section AA'</strong> — The full campus spine. Main entry at the left, the temple at the symbolic centre, yagyashala at the right.</p>
+    </div>
+
+    <!-- Section pair -->
+    <div class="image-pair reveal">
+      <figure>
+        <div class="image-reveal">
+          <img style="--img-native-w:1568px" src="assets/images/section-bb.jpg" alt="Section BB' through dharamshala blocks and central pathshala with prayer hall" loading="lazy" />
+        </div>
+        <figcaption><strong>Section BB'</strong> — Through the dharamshala blocks and central pathshala.</figcaption>
+      </figure>
+      <figure>
+        <div class="image-reveal">
+          <img style="--img-native-w:1568px" src="assets/images/section-cc.jpg" alt="Section CC' through research centre buildings and central courtyard" loading="lazy" />
+        </div>
+        <figcaption><strong>Section CC'</strong> — Through the research centre and its central courtyard.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ================= RENDERS ================= -->
+  <section class="section section-alt">
+    <div class="section-wide">
+      <div class="section-head">
+        <p class="eyebrow reveal">Renders</p>
+        <h2 class="reveal">Walking the campus.</h2>
+      </div>
+
+      <div class="gallery">
+        <!-- Wide — top-down plaza -->
+        <figure class="gallery-item gallery-wide reveal">
+          <div class="img-wrap"><img src="assets/images/render-plaza-top.jpg" alt="Aerial view down the central axial water body toward the Shiva temple" loading="lazy" /></div>
+          <figcaption><strong>Central axis</strong>The axial water body descends from the Shiva temple as a representation of the Ganga, framing the visitor's approach.</figcaption>
+        </figure>
+
+        <figure class="gallery-item reveal">
+          <div class="img-wrap"><img src="assets/images/render-aerial-detail.jpg" alt="Bird's-eye view of the campus showing the temple, plaza, and entrance gate" loading="lazy" /></div>
+          <figcaption><strong>Aerial — entrance to plaza</strong>The campus reads as a mandala from above. The entrance gate, plaza, and central temple sit on a single north-south spine.</figcaption>
+        </figure>
+
+        <figure class="gallery-item reveal">
+          <div class="img-wrap"><img src="assets/images/render-temple-side.jpg" alt="Side view of the Shiva temple with stepped pyramidal roof" loading="lazy" /></div>
+          <figcaption><strong>Shiva temple — side</strong>Stepped pyramidal roof referencing the seven steps to heaven from Hindu cosmology.</figcaption>
+        </figure>
+
+        <figure class="gallery-item reveal">
+          <div class="img-wrap"><img src="assets/images/render-yagyashala.jpg" alt="Yagyashala with sacred fire pit and pitched canopy roof" loading="lazy" /></div>
+          <figcaption><strong>Yagyashala</strong>Open-air ceremonial space for the sacred fire ritual. The pitched canopy is a contemporary reading of a traditional pavilion.</figcaption>
+        </figure>
+
+        <figure class="gallery-item reveal">
+          <div class="img-wrap"><img src="assets/images/render-meditation.jpg" alt="Meditation hall sunken beneath the central plaza with circular water pool" loading="lazy" /></div>
+          <figcaption><strong>Meditation hall</strong>Carved beneath the central plaza, lit from above, with stepped seating and a circular reflection pool at the centre.</figcaption>
+        </figure>
+
+        <figure class="gallery-item reveal">
+          <div class="img-wrap"><img src="assets/images/render-research.jpg" alt="Research centre exterior with deep cantilevered overhang and arched openings" loading="lazy" /></div>
+          <figcaption><strong>Research centre</strong>Brick-and-arch facade fronting a green court. Deep overhangs respond to Ahmedabad's hot-dry climate.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= REFLECTION ================= -->
+  <section class="section section-dark">
+    <div class="section-narrow">
+      <p class="eyebrow reveal">Reflection</p>
+      <h2 class="reveal" style="margin-bottom: 2rem;">What this thesis taught me.</h2>
+      <div class="reveal">
+        <p>
+          Designing a campus for Sanskrit forced a question I hadn't
+          expected: how do you make a building for a language? The answer
+          wasn't in the program — it was in the planning. Vastu Purusha
+          and the gurukul gave me a way to organize 49,000 sqm without
+          resorting to either pastiche or generic institutional planning.
+        </p>
+        <p>
+          The thesis also taught me how complex real campus projects are.
+          Seven different programs, three user types, religious and
+          secular spaces side-by-side, vehicular and pedestrian flows that
+          cannot cross — every move has consequences three steps
+          downstream. That kind of multi-stakeholder, multi-program
+          coordination is what drew me to construction project management
+          afterward, and it is the framework I bring to the work I do now.
+        </p>
+        <p>
+          If I returned to this project today, I would push further on
+          passive cooling strategies and tighten the residential phasing.
+          But the central organizing idea — that a contemporary
+          institution can be structured by an ancient logic without
+          becoming a museum of it — is one I still believe in.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <p class="footer-name">Kashyap Joshi</p>
+    <p class="footer-tag">B.Arch · MS Project Management, Northeastern University</p>
+    <div class="footer-links">
+      <a href="mailto:joshi.kas@northeastern.edu">Email</a>
+      <a href="https://linkedin.com/in/kashyapjoshi1147" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="../">Full Portfolio</a>
+      <a href="assets/pdf/thesis-report.pdf" download>Thesis PDF</a>
+    </div>
+    <p class="footer-copy">© 2026 Kashyap Joshi · Thesis submitted to Bhagwan Mahavir College of Architecture, Surat · 2023</p>
+  </footer>
+
+  <script>
+    // ============================================================
+    // Sticky nav border on scroll
+    // ============================================================
+    const nav = document.getElementById('nav');
+    const onScroll = () => {
+      if (window.scrollY > 20) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // ============================================================
+    // Reveal on scroll — progressive enhancement
+    // Content is visible by default; only animate if JS works.
+    // ============================================================
+    (function initReveals() {
+      if (!('IntersectionObserver' in window)) return; // graceful fallback: no animation, content stays visible
+
+      // Activate animation styles
+      document.documentElement.classList.add('js-anim');
+
+      const reveals = document.querySelectorAll('.reveal, .image-reveal');
+
+      // Mark elements that are already in viewport as in-view immediately
+      // (so above-the-fold content doesn't stay hidden waiting for scroll)
+      const markIfVisible = (el) => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          el.classList.add('in-view');
+          return true;
+        }
+        return false;
+      };
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+
+      reveals.forEach(el => {
+        if (!markIfVisible(el)) {
+          io.observe(el);
+        }
+      });
+
+      // Safety net: after 4 seconds, force-reveal anything still hidden
+      // (covers cases like file:// loads where observer may not fire reliably)
+      setTimeout(() => {
+        reveals.forEach(el => {
+          if (!el.classList.contains('in-view')) {
+            el.classList.add('in-view');
+          }
+        });
+      }, 4000);
+    })();
+  </script>
+</body>
+</html>
